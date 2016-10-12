@@ -15,7 +15,7 @@ var bio = {
     },
     "welcomeMessage": "Your answer for a number of queries",
     "skills": ["Leadership", "Cool", "Hardwork", "Awesomeness"],
-    "bioPic": "images/fry.jpg"
+    "biopic": "images/fry.jpg"
 };
 
 // Encapsulating the display fuction using dot notation.
@@ -27,32 +27,14 @@ bio.display = function() {
     var formattedName = HTMLheaderName.replace("%data%", bio.name);
     $("#header").prepend(formattedName);
 
-    var formattedmobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
-    $("#topContacts").append(formattedmobile);
-
-    var formattedmobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
-    $("#footerContacts").append(formattedmobile);
-
     var formattedemail = HTMLemail.replace("%data%", bio.contacts.email);
-    $("#topContacts").append(formattedemail); 
-
-    var formattedemail = HTMLemail.replace("%data%", bio.contacts.email);
-    $("#footerContacts").append(formattedemail);
-
     var formattedgithub = HTMLgithub.replace("%data%", bio.contacts.github);
-    $("#topContacts").append(formattedgithub);
+    var formattedlocation = HTMLlocation.replace("%data%", bio.contacts.location);
+    var formattedmobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
+    $("#topContacts, #footerContacts").append(formattedmobile, formattedemail, formattedgithub, formattedlocation);
 
-	var formattedgithub = HTMLgithub.replace("%data%", bio.contacts.github);
-    $("#footerContacts").append(formattedgithub);
-
-    var formattedbioPic = HTMLbioPic.replace("%data%", bio.bioPic);
+    var formattedbioPic = HTMLbioPic.replace("%data%", bio.biopic);
     $("#header").append(formattedbioPic);
-
-    var formattedlocation = HTMLlocation.replace("%data%", bio.contacts.location);
-    $("#topContacts").append(formattedlocation);
-
-    var formattedlocation = HTMLlocation.replace("%data%", bio.contacts.location);
-    $("#footerContacts").append(formattedlocation);
 
     var formattedwelcomeMsg = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
     $("#header").append(formattedwelcomeMsg);
@@ -66,7 +48,7 @@ bio.display = function() {
     }
 };
 
-$("body").append(bio.display);
+bio.display();
 
 var work = {
     "jobs": [{
@@ -101,19 +83,19 @@ work.display = function() {
     }
 };
 
-$("body").append(work.display);
+work.display();
 
 var projects = {
     "projects": [{
-        "title": "Project1",
+        "title": "Project 1",
         "dates": "2010 to 2011",
         "description": "Endangered Species",
-        "images": "images/project.jpg"
+        "images": ["images/project.jpg", "images/project1.jpg"]
     }, {
-        "title": "Project2",
+        "title": "Project 2",
         "dates": "2011 to 2012",
         "description": "Child labor",
-        "images": "images/project.jpg"
+        "images": ["images/project.jpg", "images/project1.jpg"]
     }]
 };
 
@@ -128,26 +110,28 @@ projects.display = function() {
         $(".project-entry:last").append(formattedDates);
         var formattedDescription = HTMLprojectDescription.replace("%data%", projects.projects[m].description);
         $(".project-entry:last").append(formattedDescription);
-        var formattedprojectImage = HTMLprojectImage.replace("%data%", projects.projects[m].images);
-        $(".project-entry:last").append(formattedprojectImage);
+        for (var j=0; j<projects.projects[m].images.length; j++) {
+                var formattedprojectImage = HTMLprojectImage.replace("%data%", projects.projects[m].images[j]);
+        		$(".project-entry:last").append(formattedprojectImage);
+        }
     }
 };
 
-$("body").append(projects.display);
+projects.display();
 
 var education = {
     "schools": [{
         "name": "ISC",
         "location": "Kerala",
         "degree": "+2",
-        "majors": "science",
+        "majors": ["Science", "Maths"],
         "dates": "2011 - 2012",
          "url"	: "http://www.cisce.org" 
     }, {
         "name": "M G University",
         "location": "Kerala",
         "degree": "BTech",
-        "majors": "civil",
+        "majors": ["civil"],
         "dates": "2012 - 2016",
         "url"	: "http://www.mguniversity.edu"
     }],
@@ -159,27 +143,28 @@ var education = {
     }]
 };
 
-// Encapsulating the display function in education object using dot notation
+// Encapsulating the display function in ed`ucation object using dot notation
 education.display = function() {
     // Display schools
     var i = education.schools.length;
     for (var m = 0; m < i; m++) {
         $("#education").append(HTMLschoolStart);
         var formattedschoolName = HTMLschoolName.replace("%data%", education.schools[m].name);
-        $(".education-entry:last").append(formattedschoolName);
         var formattedschoolDegree = HTMLschoolDegree.replace("%data%", education.schools[m].degree);
-        $(".education-entry:last").append(formattedschoolDegree);
+        $(".education-entry:last").append(formattedschoolName + formattedschoolDegree);
         var formattedschoolDates = HTMLschoolDates.replace("%data%", education.schools[m].dates);
         $(".education-entry:last").append(formattedschoolDates);
         var formattedschoolLocation = HTMLschoolLocation.replace("%data%", education.schools[m].location);
         $(".education-entry:last").append(formattedschoolLocation);
         var formattedschoolMajor = HTMLschoolMajor.replace("%data%", education.schools[m].majors);
         $(".education-entry:last").append(formattedschoolMajor);
+        var formattedURL = HTMLschoolName.replace("%data%", education.schools[m].url)
+        $(".education-entry:last").append(formattedURL);
     }
     // Display online Courses
     var j = education.onlineCourses.length;
+    $(".education-entry:last").append(HTMLonlineClasses);
     for (var n = 0; n < j; n++) {
-        $(".education-entry:last").append(HTMLonlineClasses);
         var formattedonlineTitle = HTMLonlineTitle.replace("%data%", education.onlineCourses[n].title);
         $(".education-entry:last").append(formattedonlineTitle);
         var formattedonlineSchool = HTMLonlineSchool.replace("%data%", education.onlineCourses[n].school);
@@ -191,7 +176,7 @@ education.display = function() {
     }
 };
 
-$("body").append(education.display);
+education.display();
 
 $("#mapDiv").append(googleMap);
 
