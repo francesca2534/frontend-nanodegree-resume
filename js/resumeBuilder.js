@@ -30,17 +30,29 @@ bio.display = function() {
     var formattedmobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
     $("#topContacts").append(formattedmobile);
 
+    var formattedmobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
+    $("#footerContacts").append(formattedmobile);
+
     var formattedemail = HTMLemail.replace("%data%", bio.contacts.email);
-    $("#topContacts").append(formattedemail);
+    $("#topContacts").append(formattedemail); 
+
+    var formattedemail = HTMLemail.replace("%data%", bio.contacts.email);
+    $("#footerContacts").append(formattedemail);
 
     var formattedgithub = HTMLgithub.replace("%data%", bio.contacts.github);
     $("#topContacts").append(formattedgithub);
 
+	var formattedgithub = HTMLgithub.replace("%data%", bio.contacts.github);
+    $("#footerContacts").append(formattedgithub);
+
     var formattedbioPic = HTMLbioPic.replace("%data%", bio.bioPic);
     $("#header").append(formattedbioPic);
 
-    var formattedlocation = HTMLlocation.replace("%data%", bio.contacts.Location);
+    var formattedlocation = HTMLlocation.replace("%data%", bio.contacts.location);
     $("#topContacts").append(formattedlocation);
+
+    var formattedlocation = HTMLlocation.replace("%data%", bio.contacts.location);
+    $("#footerContacts").append(formattedlocation);
 
     var formattedwelcomeMsg = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
     $("#header").append(formattedwelcomeMsg);
@@ -129,15 +141,15 @@ var education = {
         "location": "Kerala",
         "degree": "+2",
         "majors": "science",
-        "dates": "2011 - 2012" //,
-            //	"url"	: 
+        "dates": "2011 - 2012",
+         "url"	: "http://www.cisce.org" 
     }, {
         "name": "M G University",
         "location": "Kerala",
         "degree": "BTech",
         "majors": "civil",
-        "dates": "2012 - 2016" //,
-            //	"url"	: 
+        "dates": "2012 - 2016",
+        "url"	: "http://www.mguniversity.edu"
     }],
     "onlineCourses": [{
         "title": "Front End Web Development",
